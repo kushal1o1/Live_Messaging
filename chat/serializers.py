@@ -7,8 +7,8 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'email']
 
 class MessageSerializer(serializers.ModelSerializer):
-    sender = UserSerializer()
-    receiver = UserSerializer()
+    sender = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    receiver = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
 
     class Meta:
         model = Message
